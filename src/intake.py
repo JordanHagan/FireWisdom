@@ -18,33 +18,25 @@ float_col_dict = {
     '2015': 'year_2015',
     '2016': 'year_2016',
     '2017': 'year_2017',
-    'Lifetime_Investment': 'Lifetime_Investment',
-    'TotalInvestment': 'TotalInvestment',
-    'ResidentCount':  'ResidentCount',
-    'Chipper_Costs': 'Chipper_Costs',
-    'Other_Equipment_Costs': 'Other_Equipment_Costs',
-    'Contractor_Costs': 'Contractor_Costs',
-    'Home_Improvement_Costs': 'Home_Improvement_Costs',
-    'Grants': 'Grants',
-    'Hours_Investments': 'Hours_Investments',
-    'Investments_Total': 'Investments_Total',
-    'Lat': 'Lat',
-    'Lng': 'Lng'
+    'Lifetime_Investment': 'lifetime_investment',
+    'TotalInvestment': 'totalinvestment',
+    'ResidentCount':  'residentcount',
+    'Chipper_Costs': 'chipper_costs',
+    'Other_Equipment_Costs': 'other_equipment_costs',
+    'Contractor_Costs': 'contractor_costs',
+    'Home_Improvement_Costs': 'home_improvement_costs',
+    'Grants': 'grants',
+    'Hours_Investments': 'hours_investments',
+    'Investments_Total': 'investments_total',
+    'Lat': 'lat',
+    'Lng': 'lng'
 }
-
-int_col_list = []
-
-# ['vehicle_mileage', 'zones_worked_in', 'house', 'immediate_zone', 'intermediate_zone',\
-# 'extended_zone', 'common_area', 'administration', 'total_hours', 'approvalyear', 'residentcount',\
-# 'vegetation_removed_total','participating_residences','events_recorded', 'approvalyear']
 
 def clean_df(df):
     df=df.rename(columns = float_col_dict)
     for column in df.columns:
         if column in float_col_dict.values():
             df[column] = df[column].replace(r'\$', '', regex=True).replace(r'\,', '', regex=True).astype('float')
-        # if column in int_col_list:
-        #     df[column] = df[column].replace(r'\D+', '', regex=True).astype('int')
     return df
 
 def create_df(filepath):
