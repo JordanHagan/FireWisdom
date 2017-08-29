@@ -50,3 +50,13 @@ if __name__ == '__main__':
     clean_corpus = clean_corpus(corpus)
     print(clean_corpus)
     #print(parse_trees(clean_corpus))
+
+
+def clean(documents):
+    for doc in documents:
+        doc = doc.translate(punc_dict)
+        clean_doc = "".join([char for char in doc if char in printable])
+        doc = nlp(clean_doc)
+        tokens = [re.sub("\W+","",token.lemma_.lower()) for token in doc if token.is_stop == False]
+        clean_corpus.append(' '.join(w for w in tokens if w not in stop_words)
+        return clean_corpus
