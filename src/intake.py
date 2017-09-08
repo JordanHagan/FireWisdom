@@ -61,30 +61,30 @@ def save_to_db(filepath):
 
 
 if __name__ == '__main__':
-    # lst_of_files = ['data/data_csv/old_active_map.csv',\
-    # 'data/data_csv/old_community_correspondence.csv',\
-    # 'data/data_csv/old_community_event_material.csv',\
-    # 'data/data_csv/old_community_event.csv',\
-    # 'data/data_csv/old_community_file.csv',\
-    # 'data/data_csv/old_community_file_map.csv',\
-    # 'data/data_csv/old_community_info.csv',\
-    # 'data/data_csv/old_community_renewal.csv',\
-    # 'data/data_csv/old_community_renewal_status_map.csv',\
-    # 'data/data_csv/old_correspondence_type_map.csv',\
-    # 'data/data_csv/FRW - Annual Program Growth.csv',\
-    # 'data/data_csv/FRW - Application Status.csv',\
-    # 'data/data_csv/FRW - Community Investment.csv',\
-    # 'data/data_csv/FRW - Renewal Report.csv',\
-    # 'data/data_csv/FRW - Risk Reduction Hours.csv',\
-    # 'data/data_csv/FRW - Risk Reduction Investments.csv',\
-    # 'data/data_csv/FRW - Site Directory.csv',\
-    # 'data/data_csv/FRW - User List.csv',\
-    # 'data/data_csv/FRW - Vegetation Removal Report.csv']
-
-    lst_of_files = ['/Users/jordanhelen/galvanize/capstone/data/data_csv/zip_codes_states.csv',\
+    lst_of_files = ['data/data_csv/old_active_map.csv',\
+    'data/data_csv/old_community_correspondence.csv',\
+    'data/data_csv/old_community_event_material.csv',\
+    'data/data_csv/old_community_event.csv',\
+    'data/data_csv/old_community_file.csv',\
+    'data/data_csv/old_community_file_map.csv',\
+    'data/data_csv/old_community_info.csv',\
+    'data/data_csv/old_community_renewal.csv',\
+    'data/data_csv/old_community_renewal_status_map.csv',\
+    'data/data_csv/old_correspondence_type_map.csv',\
+    'data/data_csv/FRW - Annual Program Growth.csv',\
+    'data/data_csv/FRW - Application Status.csv',\
+    'data/data_csv/FRW - Community Investment.csv',\
+    'data/data_csv/FRW - Renewal Report.csv',\
+    'data/data_csv/FRW - Risk Reduction Hours.csv',\
+    'data/data_csv/FRW - Risk Reduction Investments.csv',\
+    'data/data_csv/FRW - Site Directory.csv',\
+    'data/data_csv/FRW - User List.csv',\
+    'data/data_csv/FRW - Vegetation Removal Report.csv',\
+    '/Users/jordanhelen/galvanize/capstone/data/data_csv/zip_codes_states.csv',\
     '/Users/jordanhelen/galvanize/capstone/data/population_growth_rate_data/PEP_2016_PEPANNCHIP.US12A_with_ann.csv',\
     '/Users/jordanhelen/galvanize/capstone/data/emergency_preparedness_census_data/AHS_2013_S06AOM_with_ann.csv',\
-    '/Users/jordanhelen/galvanize/capstone/data/emergency_preparedness_census_data/AHS_2013_S06AOM_metadata.csv']
+    '/Users/jordanhelen/galvanize/capstone/data/emergency_preparedness_census_data/AHS_2013_S06AOM_metadata.csv',\
+    '/Users/jordanhelen/galvanize/capstone/data/data_csv/state_abb_crosswalk.csv']
 
     for fle in lst_of_files:
         save_to_db(fle)
