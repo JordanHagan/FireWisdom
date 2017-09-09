@@ -1,20 +1,29 @@
 import spacy, re
 import pandas as pd
+import numpy as np
 from sqlalchemy import create_engine
 from string import punctuation, printable
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
-from sklearn.preprocessing import LabelEncoder
+from keras.layers import Embedding, LSTM, Dense, Dropout, Conv1D, MaxPooling1D
+from keras.models import Sequential
 
 class RNN:
     def __init__(self, sql_code_str):
         self.engine = create_engine('postgresql://jordanhelen:password@localhost:5432/firewise')
         self.sql_code_str = sql_code_str
         self.df = None
-        self.y = None
-        self.y_labels = None
         self.X = None
-        self.X_padded_sequences= None
+        self.y = None
+        self.X_train = None
+        self.X_test = None
+        self.y_train = None
+        self.y_test = None
+        self.model = None
+        self.score = None
+        self.accuracy = None
 
     def df_from_sql(self):
         '''
@@ -28,7 +37,7 @@ class RNN:
 
     def make_labels(self):
         le = LabelEncoder()
-        self.y_labels = le.fit_transform(self.y)
+        self.y = le.fit_transform(self.y)
 
     def clean_text(self):
         '''
@@ -47,10 +56,27 @@ class RNN:
         '''
         Tokenize and Pad the clean data to use in the Neural Network
         '''
-        tokenizer = Tokenizer()
+        tokenizer = Tokenizer(num_words=2000)
         tokenizer.fit_on_texts(self.X)
         X_sequences = tokenizer.texts_to_sequences(self.X)
-        self.X_padded_sequences = pad_sequences(X_sequences)
+        self.X = pad_sequences(X_sequences, maxlen=200)
+
+    def train_test_split(self):
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y, test_size=0.30)
+
+    def lstm(self):
+        self.model = Sequential()
+        self.model.add(Embedding(2000, 128, input_length=200))
+        self.model.add(Conv1D(64, 5, activation='relu'))
+        self.model.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2))
+        self.model.add(Dense(6, activation='softmax'))
+        self.model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+        self.model.fit(self.X_train, self.y_train, batch_size=128, epochs=6)
+
+
+    def get_score(self):
+        self.score = self.model.evaluate(self.X_test, self.y_test)[0]
+        self.accuracy = self.model.evaluate(self.X_test, self.y_test)[1]
 
 
 if __name__ == '__main__':
@@ -60,5 +86,8 @@ if __name__ == '__main__':
     rnn.make_labels()
     rnn.clean_text()
     rnn.tokenize()
-    print(rnn.X_padded_sequences)
-    print(rnn.y_labels)
+    rnn.train_test_split()
+    rnn.lstm()
+    rnn.get_score()
+    print("Score: ", rnn.score)
+    print("Accuracy: ", rnn.accuracy)
