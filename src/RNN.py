@@ -9,6 +9,7 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.layers import Embedding, LSTM, Dense, Dropout, Conv1D, MaxPooling1D
 from keras.models import Sequential
+from imblearn.over_sampling import SMOTE
 
 class RNN:
     def __init__(self, sql_code_str):
@@ -25,15 +26,15 @@ class RNN:
         self.score = None
         self.accuracy = None
 
+
     def df_from_sql(self):
         '''
-        Bring Data in from SQL
-        SQL Code should only contain 2 columns (your X and y)
-        X should be the first column, y second
+        Bring in the data and split X and y values
         '''
         self.df = pd.read_sql(self.sql_code_str, self.engine)
         self.X = self.df[self.df.columns[0]].values
         self.y = self.df[self.df.columns[1]].values
+
 
     def make_labels(self):
         le = LabelEncoder()
@@ -56,22 +57,37 @@ class RNN:
         '''
         Tokenize and Pad the clean data to use in the Neural Network
         '''
-        tokenizer = Tokenizer(num_words=2000)
+        tokenizer = Tokenizer(num_words=600)
         tokenizer.fit_on_texts(self.X)
         X_sequences = tokenizer.texts_to_sequences(self.X)
-        self.X = pad_sequences(X_sequences, maxlen=200)
+        self.X = pad_sequences(X_sequences, maxlen=500)
 
     def train_test_split(self):
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y, test_size=0.30)
 
+    def resample(self):
+        '''
+        The data is imbalanced, we must fix that before we traing the RNN
+               event_type       | count
+        ------------------------+-------
+         Community Preparedness |    30
+         Home assessment        |    51
+         Education Event        |   846
+         Mitigation Event       |  1538
+         Distribution Event     |   511
+        '''
+        sm = SMOTE(random_state=12)
+        self.X_train, self.y_train = sm.fit_sample(self.X_train, self.y_train)
+
+
     def lstm(self):
         self.model = Sequential()
-        self.model.add(Embedding(2000, 128, input_length=200))
+        self.model.add(Embedding(600, 128, input_length=500))
         self.model.add(Conv1D(64, 5, activation='relu'))
         self.model.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2))
         self.model.add(Dense(6, activation='softmax'))
         self.model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-        self.model.fit(self.X_train, self.y_train, batch_size=128, epochs=6)
+        self.model.fit(self.X_train, self.y_train, batch_size=128, epochs=7)
 
 
     def get_score(self):
@@ -80,13 +96,14 @@ class RNN:
 
 
 if __name__ == '__main__':
-    sql = 'SELECT event_desc, event_type FROM clean_event_mapping;'
+    sql = "SELECT event_desc, event_type FROM clean_event_mapping WHERE event_type <> 'GIS';"
     rnn = RNN(sql)
     rnn.df_from_sql()
     rnn.make_labels()
     rnn.clean_text()
     rnn.tokenize()
     rnn.train_test_split()
+    rnn.resample()
     rnn.lstm()
     rnn.get_score()
     print("Score: ", rnn.score)
