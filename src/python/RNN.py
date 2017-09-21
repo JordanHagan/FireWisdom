@@ -103,7 +103,6 @@ if __name__ == '__main__':
     rnn.clean_text()
     rnn.tokenize()
     rnn.train_test_split()
-    rnn.resample()
     rnn.lstm()
     rnn.get_score()
     print("Score: ", rnn.score)

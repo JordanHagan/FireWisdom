@@ -2,10 +2,9 @@ import spacy, re
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
-from keras.preprocessing.text import Tokenizer
 from string import punctuation, printable
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.decomposition import NMF
+from sklearn.decomposition import NMF, LatentDirichletAllocation
 
 from sklearn.datasets import fetch_20newsgroups
 
@@ -16,39 +15,57 @@ class NMF_class:
         self.sql_code_str = sql_code_str
         self.df = None
         self.contents = None
-        self.nmf_model = None
-        self.tfidf = None
-        self.tfidf_feature_names = None
-        self.vocabulary = None
-        self.vectorizer_model = None
+        self.X = None
+        self.model = None
+        self.feature_names = None
         self.error = None
+
 
     def df_from_sql(self):
         print("Bringing data in...")
         self.df = pd.read_sql(self.sql_code_str, self.engine)
         self.contents = self.df[self.df.columns[0]].values
 
-    def load_dataset(self):
-        '''
-        Test Data Set to ensure model works properly
-        '''
-        dataset = fetch_20newsgroups(shuffle=True, random_state=1,
-                             remove=('headers', 'footers', 'quotes'))
-        self.contents = dataset.data[:2000]
+
+    def clean_text(self):
+        print("Lemmatizing, removing stop words, cleaning text...")
+        punc_dict = {ord(punc): None for punc in punctuation}
+        nlp = spacy.load("en")
+        for i, line in enumerate(self.contents):
+            line = line.translate(punc_dict)
+            clean_doc = "".join([char for char in line if char in printable])
+            line = nlp(clean_doc)
+            line_list = [re.sub("\W+","",token.lemma_.lower()) for token in line if token.is_stop == False]
+            line_list = [token for token in line_list if token not in ('2015','2014','2016')]
+            self.contents[i] = ' '.join(line_list)
+
 
     def tfid(self):
         print("Extracting tf-idf features for NMF...")
-        tfidf_vectorizer = TfidfVectorizer(max_df=0.95, min_df=.05, max_features=2000, stop_words='english', sublinear_tf=True)
+        tfidf_vectorizer = TfidfVectorizer(max_df=0.95, min_df=.05, max_features=200)
         self.X = tfidf_vectorizer.fit_transform(self.contents)
-        self.tfidf_feature_names = tfidf_vectorizer.get_feature_names()
+        self.feature_names = tfidf_vectorizer.get_feature_names()
+
+
+    def tf(self):
+        print("Extracting tf features for LDA...")
+        tf_vectorizer = CountVectorizer(max_df=0.95, min_df=.05, max_features=200)
+        self.X = tf_vectorizer.fit_transform(self.contents)
+        self.feature_names = tf_vectorizer.get_feature_names()
 
 
     def run_nmf(self):
         print("Running NMF model...")
-        self.nmf_model = NMF(n_components=5, max_iter=10000, alpha=.1, l1_ratio=.5)
-        W = self.nmf_model.fit_transform(self.X)
-        H = self.nmf_model.components_
-        self.error = self.nmf_model.reconstruction_err_
+        self.model = NMF(n_components=5, max_iter=10000, alpha=.1, l1_ratio=.5)
+        W = self.model.fit_transform(self.X)
+        H = self.model.components_
+        self.error = self.model.reconstruction_err_
+
+
+    def run_lda(self):
+        print("Running LDA model...")
+        self.model = LatentDirichletAllocation(n_components=5, max_iter=100,learning_method='online',learning_offset=50.,random_state=0)
+        self.model.fit(self.X)
 
 
     def print_top_words(self, model, feature_names, n_top_words=20):
@@ -60,12 +77,12 @@ class NMF_class:
 
 
 if __name__ == '__main__':
-    sql = "SELECT event_desc, event_type FROM clean_event_mapping WHERE event_type <> 'GIS';"
-    #sql = "SELECT description::text FROM old_community_event where description is not null;"
+    sql = "SELECT event_desc, event_type FROM under_sampling_data;"
     nmf = NMF_class(sql)
-    #nmf.load_dataset()
     nmf.df_from_sql()
-    nmf.tfid()
-    nmf.run_nmf()
-    print(nmf.error)
-    print(nmf.print_top_words(nmf.nmf_model, nmf.tfidf_feature_names, 10))
+    nmf.clean_text()
+    # nmf.tfid()
+    # nmf.run_nmf()
+    nmf.tf()
+    nmf.run_lda()
+    print(nmf.print_top_words(nmf.model, nmf.feature_names, 10))
