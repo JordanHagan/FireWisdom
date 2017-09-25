@@ -10,11 +10,11 @@
 <sub><b>[Source](http://www.firewise.org/about.aspx)</b></sub>
 
 ## Table of Contents
-1. [About](#about-this-project)
+1. [About](#about)
 2. [Natural Language Processing Tools](#natural-language-processing-tools)
-    * [RNN processing](#rnn-processing)
-    * [NMF processing](#nmf-processing)
-    * [LDA processing](#lda-processing)
+    * [RNN](#rnn)
+    * [NMF](#nmf)
+    * [LDA](#lda)
 
 ## About
 Data and what they can do with it has been a rising topic within the NFPA organization. They are hoping to discover new tools, and best practices to continue on with this project long after my partnership with them is over. We are very excited about this collaboration.
@@ -26,12 +26,12 @@ There are 2 goals to this project:
 ## Natural Language Processing Tools
 One of my personal goals of this project was to gain more knowledge around different NLP tools. The world is full of free-text fields that are full of useful data just waiting for us to mine! Exploring alternative methodologies around tapping into this data sounded fun and challenging.
 
-### RNN processing ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/RNN.py))
+### RNN ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/RNN.py))
 FireWise had already mapped around 2,000 free text fields to the categories they identified.  My theory is that we could do all the normal NLP pre-model text processing, map that resulting text to numbers, put those numbers into a matrix, and run that matrix through a Recurrent Neural Network to hopefully have it learn by the words in the matrix, which category it maps to.
 
 Right now, the RNN is operating at about 75% accuracy.  My theory as to why it is unable to identify which category the text belongs in is because free text fields can have more than 1 category within it. This situation is better handled by NMF or LDA.
 
-### NMF processing ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/NMF_or_LDA.py))
+### NMF ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/NMF_or_LDA.py))
 *"Non-negative matrix factorization (NMF) is used for feature extraction and is generally seen to be useful when there are many attributes, particularly when the attributes are ambiguous or are not strong predictors. By combining attributes NMF can display patterns, topics, or themes which have importance."*
 <sub><b>[Source](https://datascience.stackexchange.com/questions/10299/what-is-a-good-explanation-of-non-negative-matrix-factorization/15438)</b></sub>
 
@@ -39,7 +39,7 @@ Right now, the RNN is operating at about 75% accuracy.  My theory as to why it i
 <sub><b>[Source](http://nbviewer.jupyter.org/github/dolaameng/tutorials/blob/master/topic-finding-for-short-texts/topics_for_short_texts.ipynb)</b></sub>
 
 
-### LDA processing ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/NMF_or_LDA.py))
+### LDA ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/NMF_or_LDA.py))
 *"In natural language processing, latent Dirichlet allocation (LDA) is a generative statistical model that allows sets of observations to be explained by unobserved groups that explain why some parts of the data are similar."*
 <sub><b>[Source](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)</b></sub>
 
