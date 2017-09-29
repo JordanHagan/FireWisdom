@@ -10,8 +10,9 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.layers import Embedding, LSTM, Dense, Dropout, Conv1D, MaxPooling1D
 from keras.models import Sequential
 from imblearn.over_sampling import SMOTE
+from keras.models import load_model
 
-class RNN:
+class Build_RNN_model:
     def __init__(self, sql_code_str):
         self.engine = create_engine('postgresql://jordanhelen:password@localhost:5432/firewise')
         self.sql_code_str = sql_code_str
@@ -23,6 +24,7 @@ class RNN:
         self.y_train = None
         self.y_test = None
         self.model = None
+        self.tokenizer = None
         self.score = None
         self.accuracy = None
 
@@ -37,8 +39,9 @@ class RNN:
 
 
     def make_labels(self):
-        le = LabelEncoder()
-        self.y = le.fit_transform(self.y)
+        le_model = LabelEncoder()
+        self.y = le_model.fit_transform(self.y)
+
 
     def clean_text(self):
         '''
@@ -57,9 +60,9 @@ class RNN:
         '''
         Tokenize and Pad the clean data to use in the Neural Network
         '''
-        tokenizer = Tokenizer(num_words=600)
-        tokenizer.fit_on_texts(self.X)
-        X_sequences = tokenizer.texts_to_sequences(self.X)
+        self.tokenizer = Tokenizer(num_words=600)
+        self.tokenizer.fit_on_texts(self.X)
+        X_sequences = self.tokenizer.texts_to_sequences(self.X)
         self.X = pad_sequences(X_sequences, maxlen=500)
 
     def train_test_split(self):
@@ -87,17 +90,18 @@ class RNN:
         self.model.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2))
         self.model.add(Dense(6, activation='softmax'))
         self.model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-        self.model.fit(self.X_train, self.y_train, batch_size=128, epochs=7)
-
+        self.model.fit(self.X_train, self.y_train, batch_size=128, epochs=8, class_weight='auto')
+        self.model.save('rnn_model.h5')
 
     def get_score(self):
         self.score = self.model.evaluate(self.X_test, self.y_test)[0]
         self.accuracy = self.model.evaluate(self.X_test, self.y_test)[1]
 
 
+
 if __name__ == '__main__':
     sql = "SELECT event_desc, event_type FROM clean_event_mapping WHERE event_type <> 'GIS';"
-    rnn = RNN(sql)
+    rnn = Build_RNN_model(sql)
     rnn.df_from_sql()
     rnn.make_labels()
     rnn.clean_text()

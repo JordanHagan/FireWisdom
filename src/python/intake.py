@@ -42,7 +42,7 @@ def clean_df(df):
     return df
 
 def create_df(filepath):
-    df = pd.read_csv(filepath)
+    df = pd.read_csv(filepath, encoding = "ISO-8859-1")
     df.columns = [c.lower() for c in df.columns] #postgres doesn't like capitals or spaces
     return df
 
@@ -63,25 +63,26 @@ def save_to_db(filepath):
 
 
 if __name__ == '__main__':
-    lst_of_files = ['data/data_csv/old_active_map.csv',\
-    'data/data_csv/old_community_correspondence.csv',\
-    'data/data_csv/old_community_event_material.csv',\
-    'data/data_csv/old_community_event.csv',\
-    'data/data_csv/old_community_file.csv',\
-    'data/data_csv/old_community_file_map.csv',\
-    'data/data_csv/old_community_info.csv',\
-    'data/data_csv/old_community_renewal.csv',\
-    'data/data_csv/old_community_renewal_status_map.csv',\
-    'data/data_csv/old_correspondence_type_map.csv',\
-    'data/data_csv/FRW - Annual Program Growth.csv',\
-    'data/data_csv/FRW - Application Status.csv',\
-    'data/data_csv/FRW - Community Investment.csv',\
-    'data/data_csv/FRW - Renewal Report.csv',\
-    'data/data_csv/FRW - Risk Reduction Hours.csv',\
-    'data/data_csv/FRW - Risk Reduction Investments.csv',\
-    'data/data_csv/FRW - Site Directory.csv',\
-    'data/data_csv/FRW - User List.csv',\
-    'data/data_csv/FRW - Vegetation Removal Report.csv']
-
-    for fle in lst_of_files:
-        save_to_db(fle)
+    # lst_of_files = ['data/data_csv/old_active_map.csv',\
+    # 'data/data_csv/old_community_correspondence.csv',\
+    # 'data/data_csv/old_community_event_material.csv',\
+    # 'data/data_csv/old_community_event.csv',\
+    # 'data/data_csv/old_community_file.csv',\
+    # 'data/data_csv/old_community_file_map.csv',\
+    # 'data/data_csv/old_community_info.csv',\
+    # 'data/data_csv/old_community_renewal.csv',\
+    # 'data/data_csv/old_community_renewal_status_map.csv',\
+    # 'data/data_csv/old_correspondence_type_map.csv',\
+    # 'data/data_csv/FRW - Annual Program Growth.csv',\
+    # 'data/data_csv/FRW - Application Status.csv',\
+    # 'data/data_csv/FRW - Community Investment.csv',\
+    # 'data/data_csv/FRW - Renewal Report.csv',\
+    # 'data/data_csv/FRW - Risk Reduction Hours.csv',\
+    # 'data/data_csv/FRW - Risk Reduction Investments.csv',\
+    # 'data/data_csv/FRW - Site Directory.csv',\
+    # 'data/data_csv/FRW - User List.csv',\
+    # 'data/data_csv/FRW - Vegetation Removal Report.csv']
+    #
+    # for fle in lst_of_files:
+    #     save_to_db(fle)
+    save_to_db('/Users/jordanhelen/galvanize/capstone/data/co-est2016-alldata.csv')
