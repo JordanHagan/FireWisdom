@@ -75,6 +75,7 @@ CREATE TABLE front_end_display_data AS
   sum(dist_event) as dist_event,
   sum(home_assess) as home_assess,
   sum(comm_prep) as comm_prep,
+  sum(mitigation) as mitigation,
   sum(other) as other
   from all_events
   left join all_investment_data invest on all_events.name = invest.name and all_events.county = invest.county
