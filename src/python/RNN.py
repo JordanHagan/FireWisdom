@@ -11,6 +11,7 @@ from keras.layers import Embedding, LSTM, Dense, Dropout, Conv1D, MaxPooling1D
 from keras.models import Sequential
 from imblearn.over_sampling import SMOTE
 from keras.models import load_model
+import pickle
 
 class Build_RNN_model:
     def __init__(self, sql_code_str):
@@ -40,7 +41,10 @@ class Build_RNN_model:
 
     def make_labels(self):
         le_model = LabelEncoder()
-        self.y = le_model.fit_transform(self.y)
+        le_model = le_model.fit(self.y)
+        with open('lable_model.pkl','wb') as f:
+            pickle.dump(le_model,f)
+        self.y = le_model.transform(self.y)
 
 
     def clean_text(self):
@@ -90,7 +94,7 @@ class Build_RNN_model:
         self.model.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2))
         self.model.add(Dense(6, activation='softmax'))
         self.model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-        self.model.fit(self.X_train, self.y_train, batch_size=128, epochs=8, class_weight='auto')
+        self.model.fit(self.X_train, self.y_train, batch_size=128, epochs=9, class_weight='auto')
         self.model.save('rnn_model.h5')
 
     def get_score(self):
