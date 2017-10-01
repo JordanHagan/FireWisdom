@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jordan's Awesome Webpage 2007</title>
+  <title>FireWisdom</title>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css" />
+  <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.js"></script>
 </head>
 <body>
-  <select id="communities" onchange="communityChanged()"></select>
-  <div id="event-chart"></div>
-  <div id="investment-chart"></div>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li class="menu-text">FireWisdom</li>
+        <li><a href="/">Community Metrics</a></li>
+        <li><a href="/lda_viz">LDA Visualization</a></li>
+        <li><a href="https://github.com/JordanHagan/FireWisdom">GitHub Repo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="container">
+    <label for="communities">Select a community:</label>
+    <select id="communities" onchange="communityChanged()"></select>
+    <div id="info" class="callout row">
+      <div class="small-4 columns"><strong>Resident Count:</strong><br/><span id="resident-count"></span></div>
+      <div class="small-4 columns"><strong>County % Growth 2015-16:</strong><br/><span id="percent-growth"></span></div>
+      <div class="small-4 columns"><strong>Total Investment:</strong><br/><span id="total-investment"></span></div>
+    </div>
+    <h3>Pretty Graph</h3>
+    <div id="event-chart" class="chart-container"></div>
+
+    <h3>Other Pretty Graph :)</h3>
+    <div id="investment-chart" class="chart-container"></div>
+  </div>
 </body>
 <script src="../static/js/script.js"></script>
 </html>

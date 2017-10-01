@@ -1,0 +1,50 @@
+.callout {
+  margin: 0 auto;
+}
+
+#info div {
+  text-align: center;
+}
+
+#info span {
+  font-size: 32px;
+}
+
+.chart-container {
+  margin: 0 3rem;
+}
+
+#container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tick {
+  font-size: 15px;
+}
+
+
+/* HERE BE DRAGONS */
+.madness {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.madness > div > div:first-child {
+  float: none !important;
+}
+
+.madness div div:last-child {
+  margin-right: 0 !important;
+}
+
+.madness > div > div:first-child label, .madness > div > div:first-child input {
+  display: inline-block;
+  top: -6px;
+  position: relative;
+}
+
+.madness > div > div:last-child > div:nth-child(2) > svg {
+  position: relative;
+  top: -5px;
+}

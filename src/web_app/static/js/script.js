@@ -13,6 +13,14 @@ function updateDropdown() {
   document.querySelector('#communities').innerHTML = html
 }
 
+function updateInfoBox() {
+  const communityData = data[community]
+  document.querySelector('#resident-count').innerHTML = communityData.residentcount
+  document.querySelector('#percent-growth').innerHTML =
+    `${(communityData.pop_percent_change * 100).toFixed(2)}%`
+  document.querySelector('#total-investment').innerHTML = `$${communityData.lifetime_investment}`
+}
+
 function updateEventChart() {
   const eventData = ['No. of Events'].concat(data[community].event_info)
   c3.generate({
@@ -21,6 +29,7 @@ function updateEventChart() {
         columns: [eventData],
         type: 'bar'
     },
+    legend: {hide: true},
     axis: {
       y: {
         tick: {
@@ -42,7 +51,7 @@ function updateInvestmentChart() {
   const totalInvestment = ['Total Investment']
   let total = 0
   yearlyData.forEach(value => {
-    total += Math.round(value*100) / 100
+    total = Number((total + value).toFixed(2))
     totalInvestment.push(total)
   })
 
@@ -72,6 +81,7 @@ function communityChanged() {
 }
 
 function updateDashboard() {
+  updateInfoBox()
   updateEventChart()
   updateInvestmentChart()
 }
