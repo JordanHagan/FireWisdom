@@ -1,26 +1,24 @@
 const cats = ['Education Events', 'Distribution Events', 'Home Assessments',
   'Community Events', 'Mitigation Events', 'Others']
-let community = '555 Freeman Road'
+let community
 let data = {}
 
 function updateDropdown() {
   let html = ''
   const communities = Object.keys(data)
+  community = communities[0]
   communities.forEach(community => {
     html += `<option value="${community}">${community}</option>`
   })
   document.querySelector('#communities').innerHTML = html
 }
 
-function showEventChart() {
-  const eventData = data[community].event_info
-  eventData.unshift('No. of Events')
-  var chart = c3.generate({
-    bindto: '#chart',
+function updateEventChart() {
+  const eventData = ['No. of Events'].concat(data[community].event_info)
+  c3.generate({
+    bindto: '#event-chart',
     data: {
-        columns: [
-            eventData
-        ],
+        columns: [eventData],
         type: 'bar'
     },
     axis: {
@@ -31,16 +29,51 @@ function showEventChart() {
       },
       x: {
         tick: {
-          format: (x) => cats[x]
+          format: x => cats[x]
         }
       }
     }
   });
 }
 
+function updateInvestmentChart() {
+  const yearlyData = data[community].yearly_investments
+  const investmentData = ['Yearly Investment'].concat(yearlyData)
+  const totalInvestment = ['Total Investment']
+  let total = 0
+  yearlyData.forEach(value => {
+    total += Math.round(value*100) / 100
+    totalInvestment.push(total)
+  })
+
+  c3.generate({
+    bindto: '#investment-chart',
+    data: {
+      columns: [investmentData, totalInvestment]
+    },
+    axis: {
+      y: {
+        tick: {
+          format: x => `$${x}`
+        }
+      },
+      x: {
+        tick: {
+          format: x => x + 2003
+        }
+      }
+    }
+  })
+}
+
 function communityChanged() {
   community = document.querySelector('#communities').value
-  showEventChart()
+  updateDashboard()
+}
+
+function updateDashboard() {
+  updateEventChart()
+  updateInvestmentChart()
 }
 
 fetch('/data')
@@ -48,5 +81,5 @@ fetch('/data')
   .then(parsed => {
     data = parsed
     updateDropdown()
-    showEventChart()
+    updateDashboard()
   })
