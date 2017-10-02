@@ -49,12 +49,17 @@
 --   SELECT *
 --   FROM topic2
 
-CREATE TABLE front_end_display_data AS
-  SELECT
+--CREATE TABLE front_end_display_data AS
+  SELECT DISTINCT
   all_events.name,
   CASE WHEN community_status is null then 'Inactive' else community_status END as community_status,
   all_events.lifetime_investment,
-  pop_percent_change,
+  pop_change_10_11,
+  pop_change_11_12,
+  pop_change_12_13,
+  pop_change_13_14,
+  pop_change_14_15,
+  pop_change_15_16,
   year_2003,
   year_2004,
   year_2005,
@@ -79,5 +84,19 @@ CREATE TABLE front_end_display_data AS
   sum(other) as other
   from all_events
   left join all_investment_data invest on all_events.name = invest.name and all_events.county = invest.county
-  group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+  left join pop_growth pop on all_events.county = pop.county and all_events.state = pop.stname
+  group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
   order by 1
+
+/** Get Pop % Change **/
+-- CREATE TABLE pop_change AS
+--   SELECT
+--   stname,
+--   ctyname,
+--   (popestimate2011::float - popestimate2010::float) / popestimate2010::float as pop_change_10_11,
+--   (popestimate2012::float - popestimate2011::float) / popestimate2011::float as pop_change_11_12,
+--   (popestimate2013::float - popestimate2012::float) / popestimate2012::float as pop_change_12_13,
+--   (popestimate2014::float - popestimate2013::float) / popestimate2013::float as pop_change_13_14,
+--   (popestimate2015::float - popestimate2014::float) / popestimate2014::float as pop_change_14_15,
+--   (popestimate2016::float - popestimate2015::float) / popestimate2015::float as pop_change_15_16
+--   FROM coest2016alldata;
