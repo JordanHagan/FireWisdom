@@ -1,5 +1,5 @@
 const cats = ['Education Events', 'Distribution Events', 'Home Assessments',
-  'Community Events', 'Mitigation Events', 'Others']
+  'Community Preparedness', 'Mitigation Events', 'Others']
 let community
 let data = {}
 

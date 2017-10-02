@@ -13,12 +13,12 @@
 -- WHERE site.status <> 'Inactive'
 -- ORDER BY site.city
 
--- CREATE TABLE topic1 AS
---   SELECT
+-- CREATE TABLE topic2 AS
+--   SELECT DISTINCT
 --   new.name,
 --   new.city,
---   new.county_y as county,
---   new.abbreviation,
+--   new.county,
+--   new.state,
 --   invest.status as community_status,
 --   invest.lifetime_investment,
 --   pop.pop_percent_change,
@@ -28,20 +28,20 @@
 --   CASE WHEN id.event = 'Community Preparedness' then count(id.event) else 0 END as comm_prep,
 --   CASE WHEN id.event = 'Mitigation Event' then count(id.event) else 0 END as mitigation,
 --   CASE WHEN id.event = 'Other' then count(id.event) else 0 END as other
---   FROM corrected_cords as new
---   LEFT JOIN old_community_info as old on lower(old.name)=lower(new.name) and old.state=new.abbreviation
+--   FROM frw__site_directory as new
+--   INNER JOIN state_abb_crosswalk as st on lower(st.state) = lower(new.state)
+--   LEFT JOIN old_community_info as old on lower(old.name)=lower(new.name) and old.state=st.abbreviation
 --   LEFT JOIN old_community_event as old_event on old.community_id = old_event.community_id
 --   LEFT JOIN mapped_topics as top on old_event.event_id = top.event_id
---   LEFT JOIN frw__community_investment as invest on invest.name = new.name and new.county_y = invest.county
---   LEFT JOIN frw__risk_reduction_hours as hours on hours.community_name = new.name and new.county_y = hours.county
---   INNER JOIN state_abb_crosswalk as st on st.abbreviation = new.abbreviation
---   LEFT JOIN county_pop_growth as pop on lower(new.county_y) = lower(pop.county) and st.state = pop.stname
---   LEFT JOIN index_crosswalk id on top.lda_topic1 = id.lda_reg_index
+--   LEFT JOIN frw__community_investment as invest on invest.name = new.name and new.county = invest.county
+--   LEFT JOIN frw__risk_reduction_hours as hours on hours.community_name = new.name and new.county = hours.county
+--   LEFT JOIN county_pop_growth as pop on lower(new.county) = lower(pop.county) and st.state = pop.stname
+--   LEFT JOIN index_crosswalk id on top.lda_topic2 = id.lda_reg_index
 --   WHERE old.name is not null
 --   GROUP BY 1,2,3,4,5,6,7,id.event
 --   ORDER BY new.name;
 
---
+
 -- CREATE TABLE all_events AS
 --   SELECT *
 --   FROM topic1
