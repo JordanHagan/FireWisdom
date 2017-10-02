@@ -7,7 +7,7 @@ from collections import defaultdict
 app = Flask(__name__)
 
 #Bring Data In
-risk_df = pd.read_csv('../../../data/front_end_final.csv')
+risk_df = pd.read_csv('../../../front_end_final.csv')
 
 #Clean up and combine all data for dictionary
 risk_df = risk_df.fillna(0)
