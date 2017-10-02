@@ -62,6 +62,7 @@ community brush burn day | Education Event | Community Preparedness | Mitigation
 boundary clear line boundary flyer distribute resident day fall 7 student 1 facuity 4 resident 2 student man booth local fair fall | Community Preparedness | Distribution Event | n/a
 cleanup dead tree brush leave power company 14 property owner total 80 volunteer hour | Education Event | Mitigation Event | n/a
 smokeys 65th birthday* | Other | Other | n/a
+
 *Both NMF and LDA struggled with really struggled with small texts without obvious key words in it.  These were grouped into an "other" category*
 
 ## Dashboard Website
