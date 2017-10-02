@@ -12,11 +12,8 @@
 ## Table of Contents
 1. [About](#about)
 2. [Natural Language Processing Tools](#natural-language-processing-tools)
-    * [Recurrent Neural Network](#recurrent-neural-network)
-    * [Non-negative Matrix factorization](#non-negative-matrix-factorization)
-    * [Latent Dirichlet Allocation](#latent-dirichlet-allocation)
-    * [NMF vs. LDA](#nmf-vs-lda)
 3. [Dashboard Website](#dashboard-website)
+4. [Tech Stack](#tech-stack)
 
 ## About
 Data and what they can do with it has been a rising topic within the NFPA organization. They are hoping to discover new tools, and best practices to continue on with this project long after my partnership with them is over. We are very excited about this collaboration.
