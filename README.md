@@ -45,3 +45,12 @@ Right now, the RNN is operating at about 75% accuracy.  My theory as to why it i
 
 *"LDA finds topics as a group of words that have high co-occurrences among different documents. On the other side, documents from the similar mixture of topics should also be similar, such that they can be described by these topics in a "compact" way. So ideally the similarity in the latent topic space would imply the the similarity in both the observed word space as well as the document space - this is where the word "latent" in the name come from."*
 <sub><b>[Source](http://nbviewer.jupyter.org/github/dolaameng/tutorials/blob/master/topic-finding-for-short-texts/topics_for_short_texts.ipynb)</b></sub>
+
+### NMF vs. LDA Comparison
+Cleaned Text | NMF | LDA Topic 1 | LDA Topic 2
+--- | --- | --- | ---
+year department hold service day member community invite attend learn department event booth staff volunteer hand material discuss | Distribution Event | Distribution Event | n/a
+community brush burn day | Education Event | Community Preparedness | Mitigation Event
+boundary clear line boundary flyer distribute resident day fall 7 student 1 facuity 4 resident 2 student man booth local fair fall | Community Preparedness | Distribution Event | n/a
+cleanup dead tree brush leave power company 14 property owner total 80 volunteer hour | Education Event | Mitigation Event | n/a
+
