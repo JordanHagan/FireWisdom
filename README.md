@@ -15,13 +15,15 @@
     * [RNN](#rnn)
     * [NMF](#nmf)
     * [LDA](#lda)
+    * [NMF vs. LDA](#nmf-vs.-lda)
+3. [Dashboard Website](#Dashboard-website)
 
 ## About
 Data and what they can do with it has been a rising topic within the NFPA organization. They are hoping to discover new tools, and best practices to continue on with this project long after my partnership with them is over. We are very excited about this collaboration.
 
 There are 2 goals to this project:
 1. Natural Language Processing on historical data to gain valuable insights
-2. Risk tool used to gain more insights into their Communities
+2. Dashboard tool used to gain more insights into their Communities
 
 ## Natural Language Processing Tools
 One of my personal goals of this project was to gain more knowledge around different NLP tools. The world is full of free-text fields that are full of useful data just waiting for us to mine! Exploring alternative methodologies around tapping into this data sounded fun and challenging.
@@ -46,11 +48,33 @@ Right now, the RNN is operating at about 75% accuracy.  My theory as to why it i
 *"LDA finds topics as a group of words that have high co-occurrences among different documents. On the other side, documents from the similar mixture of topics should also be similar, such that they can be described by these topics in a "compact" way. So ideally the similarity in the latent topic space would imply the the similarity in both the observed word space as well as the document space - this is where the word "latent" in the name come from."*
 <sub><b>[Source](http://nbviewer.jupyter.org/github/dolaameng/tutorials/blob/master/topic-finding-for-short-texts/topics_for_short_texts.ipynb)</b></sub>
 
-### NMF vs. LDA Comparison
+LDA is the NLP tool I chose to use for the final results of this project.  It does a better job assigning clearer, easily identifiable topics. This is due to the ability of LDA to find and connects documents through the latent topic space.
+
+### NMF vs. LDA
+#### Comparison between the top 10 words for each topic when identified using LDA vs. NMF
+NLP Tool | Home Assessment | Mitigation | Community Preparedness | Distribution Event | Education Event
+--- | --- | --- | --- | --- | ---
+**LDA** | home, homeowner, assessment, member, information, wildland, conduct, answer, question, risk | brush, chip, road, volunteer, year, hour, community, area, property, chipper | day, community, program, material, county, event, hold, mitigation, member, chip | community, booth, information, event, annual, hold, meeting, sign, attend, home | community, presentation, property, resident, fuel, wildfire, forest, service, provide, discuss
+**NMF** | conduct, homeowner, home, assessment, risk, committee, hazard, volunteer, speak, local | brush, chip, road, area, chipper, member, people, community, volunteer, property | county, mitigation, chipper, fuel, program, property, owner, booth, chip, project | community, home, information, assessment, resident, meeting, booth, annual, wildfire, member | day, hold, event, people, chip, community, property, local, plan ,area
+
+#### Examples of how NMF and LDA mapped text to topics:
 Cleaned Text | NMF | LDA Topic 1 | LDA Topic 2
 --- | --- | --- | ---
 year department hold service day member community invite attend learn department event booth staff volunteer hand material discuss | Distribution Event | Distribution Event | n/a
 community brush burn day | Education Event | Community Preparedness | Mitigation Event
 boundary clear line boundary flyer distribute resident day fall 7 student 1 facuity 4 resident 2 student man booth local fair fall | Community Preparedness | Distribution Event | n/a
 cleanup dead tree brush leave power company 14 property owner total 80 volunteer hour | Education Event | Mitigation Event | n/a
+smokeys 65th birthday* | Other | Other | n/a
+*Both NMF and LDA struggled with really struggled with small texts without obvious key words in it.  These were grouped into an "other" category*
 
+## Dashboard Website
+Now that we had all this information on events FireWise Communities have had, we can now gain more insights into the communities!
+
+**User Interface was built by [Jordan Fallon](https://github.com/thefetts)**
+
+I worked closely with Jordan to ensure the data and analytics was accurately represented.  My goal is to create a tool that FireWise is able to use to display current community metrics, the LDA topic modeling, and census data on county population growth.
+
+Website Link
+
+## Tech Stack
+![Tech Stack](/Users/jordanhelen/galvanize/capstone/FireWisdom/images/TechStack.png)
