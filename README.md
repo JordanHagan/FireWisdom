@@ -45,7 +45,7 @@ Right now, the RNN is operating at about 75% accuracy.  My theory as to why it i
 *"LDA finds topics as a group of words that have high co-occurrences among different documents. On the other side, documents from the similar mixture of topics should also be similar, such that they can be described by these topics in a "compact" way. So ideally the similarity in the latent topic space would imply the the similarity in both the observed word space as well as the document space - this is where the word "latent" in the name come from."*
 <sub><b>[Source](http://nbviewer.jupyter.org/github/dolaameng/tutorials/blob/master/topic-finding-for-short-texts/topics_for_short_texts.ipynb)</b></sub>
 
-**LDA is the NLP tool I chose to use for the final results of this project.**  It does a better job assigning clearer, easily identifiable topics. This is due to the ability of LDA to find and connects documents through the latent topic space. Examples outlining the difference below.
+**LDA is the NLP tool I chose to use for the final results of this project.**  In cases where the topic probabilities should remain fixed per document or in small data settings in which the additional variability too much NMF performs better. Because of LDA's handling of the probabilistic priors and ability of LDA to find and connects documents through the latent topic space it does a better job assigning clearer, easily identifiable topics (and secondary topics) with larger texts.
 
 ### NMF vs LDA
 #### Comparison between the top 10 words for each topic when identified using LDA vs. NMF
@@ -64,7 +64,7 @@ boundary clear line boundary flyer distribute resident day fall 7 student 1 facu
 cleanup dead tree brush leave power company 14 property owner total 80 volunteer hour | Education Event | Mitigation Event | n/a
 smokeys 65th birthday | Other | Other | n/a
 
-*Both NMF and LDA struggled with really struggled with small texts without obvious key words in it.  These were grouped into an "other" category*
+*Both NMF and LDA struggled with small texts without obvious key words in it.  These were grouped into an "other" category*
 
 ## Dashboard Website
 Now that we had all this information on events FireWise Communities have had, we can now gain more insights into the communities!
