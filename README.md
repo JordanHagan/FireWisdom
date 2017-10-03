@@ -1,7 +1,7 @@
-# Fire-Wisdom
+# Firewisdom
 ### Data Science Immersive Cohort 49 Capstone Project
 
-## About FireWise
+## About Firewise
 *"Brush, grass and forest fires don’t have to be disasters. NFPA’s Firewise USA program encourages local solutions for safety by involving homeowners in taking individual responsibility for preparing their homes from the risk of wildfire. Firewise is a key component of Fire Adapted Communities – a collaborative approach that connects all those who play a role in wildfire education, planning and action with comprehensive resources to help reduce risk.*
 
 *The program is co-sponsored by the USDA Forest Service, the US Department of the Interior, and the National Association of State Foresters.*
@@ -26,7 +26,7 @@ There are 2 goals to this project:
 One of my personal goals of this project was to gain more knowledge around different NLP tools. The world is full of free-text fields that are full of useful data just waiting for us to mine! Exploring alternative methodologies around tapping into this data sounded fun and challenging.
 
 ### Recurrent Neural Network ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/RNN.py))
-FireWise had already mapped around 2,000 free text fields to the categories they identified.  My theory is that we could do all the normal NLP pre-model text processing, map that resulting text to numbers, put those numbers into a matrix, and run that matrix through a Recurrent Neural Network to hopefully have it learn by the words in the matrix, which category it maps to.
+Firewise had already mapped around 2,000 free text fields to the categories they identified.  My theory is that we could do all the normal NLP pre-model text processing, map that resulting text to numbers, put those numbers into a matrix, and run that matrix through a Recurrent Neural Network to hopefully have it learn by the words in the matrix, which category it maps to.
 
 Right now, the RNN is operating at about 75% accuracy.  My theory as to why it is unable to identify which category the text belongs in is because free text fields can have more than 1 category within it. This situation is better handled by NMF or LDA.
 
@@ -67,12 +67,12 @@ smokeys 65th birthday | Other | Other | n/a
 *Both NMF and LDA struggled with small texts without obvious key words in it.  These were grouped into an "other" category*
 
 ## Dashboard Website
-Now that we had all this information on events FireWise Communities have had, we can now gain more insights into the communities!
+Now that we had all this information on events Firewise Communities have had, we can now gain more insights into the communities!
 
 **User Interface was designed with help from [Jordan Fallon.](https://github.com/thefetts)**
 *I got to write and learn some JavaScript, HTML, and CSS though!*
 
-Jordan and I worked closely together to ensure the data and analytics were accurately represented.  My goal was to create a tool that FireWise is able to use to display current community metrics, the LDA topic modeling, and census data on county population growth.
+Jordan and I worked closely together to ensure the data and analytics were accurately represented.  My goal was to create a tool that Firewise is able to use to display current community metrics, the LDA topic modeling, and census data on county population growth.
 
 Website Link
 
