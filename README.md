@@ -45,7 +45,7 @@ Right now, the RNN is operating at about 75% accuracy.  My theory as to why it i
 *"LDA finds topics as a group of words that have high co-occurrences among different documents. On the other side, documents from the similar mixture of topics should also be similar, such that they can be described by these topics in a "compact" way. So ideally the similarity in the latent topic space would imply the the similarity in both the observed word space as well as the document space - this is where the word "latent" in the name come from."*
 <sub><b>[Source](http://nbviewer.jupyter.org/github/dolaameng/tutorials/blob/master/topic-finding-for-short-texts/topics_for_short_texts.ipynb)</b></sub>
 
-LDA is the NLP tool I chose to use for the final results of this project.  It does a better job assigning clearer, easily identifiable topics. This is due to the ability of LDA to find and connects documents through the latent topic space.
+**LDA is the NLP tool I chose to use for the final results of this project.**  It does a better job assigning clearer, easily identifiable topics. This is due to the ability of LDA to find and connects documents through the latent topic space. Examples outlining the difference below.
 
 ### NMF vs LDA
 #### Comparison between the top 10 words for each topic when identified using LDA vs. NMF
@@ -54,23 +54,25 @@ NLP Tool | Home Assessment | Mitigation | Community Preparedness | Distribution 
 **LDA** | home, homeowner, assessment, member, information, wildland, conduct, answer, question, risk | brush, chip, road, volunteer, year, hour, community, area, property, chipper | day, community, program, material, county, event, hold, mitigation, member, chip | community, booth, information, event, annual, hold, meeting, sign, attend, home | community, presentation, property, resident, fuel, wildfire, forest, service, provide, discuss
 **NMF** | conduct, homeowner, home, assessment, risk, committee, hazard, volunteer, speak, local | brush, chip, road, area, chipper, member, people, community, volunteer, property | county, mitigation, chipper, fuel, program, property, owner, booth, chip, project | community, home, information, assessment, resident, meeting, booth, annual, wildfire, member | day, hold, event, people, chip, community, property, local, plan ,area
 
+Clear lines are drawn between the easily identifiable topics in both LDA and NMF.  However, things start getting a little fuzzy as we continue on.  This is best exemplified when you compare Education Event between the two.
 #### Examples of how NMF and LDA mapped text to topics:
 Cleaned Text | NMF | LDA Topic 1 | LDA Topic 2
 --- | --- | --- | ---
 year department hold service day member community invite attend learn department event booth staff volunteer hand material discuss | Distribution Event | Distribution Event | n/a
 community brush burn day | Education Event | Community Preparedness | Mitigation Event
-boundary clear line boundary flyer distribute resident day fall 7 student 1 facuity 4 resident 2 student man booth local fair fall | Community Preparedness | Distribution Event | n/a
+boundary clear line boundary flyer distribute resident day fall 7 student 1 faculty 4 resident 2 student man booth local fair fall | Community Preparedness | Distribution Event | n/a
 cleanup dead tree brush leave power company 14 property owner total 80 volunteer hour | Education Event | Mitigation Event | n/a
-smokeys 65th birthday* | Other | Other | n/a
+smokeys 65th birthday | Other | Other | n/a
 
 *Both NMF and LDA struggled with really struggled with small texts without obvious key words in it.  These were grouped into an "other" category*
 
 ## Dashboard Website
 Now that we had all this information on events FireWise Communities have had, we can now gain more insights into the communities!
 
-**User Interface was built by [Jordan Fallon](https://github.com/thefetts)**
+**User Interface was designed with help from [Jordan Fallon.](https://github.com/thefetts)**
+*I got to write and learn some JavaScript, HTML, and CSS though!*
 
-I worked closely with Jordan to ensure the data and analytics was accurately represented.  My goal is to create a tool that FireWise is able to use to display current community metrics, the LDA topic modeling, and census data on county population growth.
+Jordan and I worked closely together to ensure the data and analytics were accurately represented.  My goal was to create a tool that FireWise is able to use to display current community metrics, the LDA topic modeling, and census data on county population growth.
 
 Website Link
 
