@@ -16,8 +16,8 @@ function updateDropdown() {
 function updateInfoBox() {
   const communityData = data[community]
   document.querySelector('#resident-count').innerHTML = communityData.residentcount
-  document.querySelector('#percent-growth').innerHTML =
-    `${(communityData.pop_percent_change * 100).toFixed(2)}%`
+  document.querySelector('#population-change').innerHTML =
+    `${(communityData.pop_change[communityData.pop_change.length - 1] * 100).toFixed(2)}%`
   document.querySelector('#total-investment').innerHTML = `$${communityData.lifetime_investment}`
 }
 
@@ -30,6 +30,9 @@ function updateEventChart() {
         type: 'bar'
     },
     legend: {hide: true},
+    color: {
+      pattern: ['#001d8e']
+    },
     axis: {
       y: {
         tick: {
@@ -60,6 +63,9 @@ function updateInvestmentChart() {
     data: {
       columns: [investmentData, totalInvestment]
     },
+    color: {
+      pattern: ['#e8d102','#279964']
+    },
     axis: {
       y: {
         tick: {
@@ -75,6 +81,41 @@ function updateInvestmentChart() {
   })
 }
 
+
+function updateGrowthChart() {
+  const yearlyData = data[community].pop_change
+  const growthData = ['Yearly Population Change'].concat(yearlyData)
+  const totalGrowth = ['Total Population Change Since 2010']
+  let total = 0
+  yearlyData.forEach(value => {
+    total = total + value
+    totalGrowth.push(total)
+  })
+
+  c3.generate({
+    bindto: '#growth-chart',
+    data: {
+      columns: [growthData, totalGrowth]
+    },
+    color: {
+      pattern: ['#9b3373','#1f77b4']
+    },
+    axis: {
+      y: {
+        tick: {
+          format: x => `${(x*100).toFixed(2)}%`
+        }
+      },
+      x: {
+        tick: {
+          format: x => x + 2010
+        }
+      }
+    }
+  })
+}
+
+
 function communityChanged() {
   community = document.querySelector('#communities').value
   updateDashboard()
@@ -84,6 +125,7 @@ function updateDashboard() {
   updateInfoBox()
   updateEventChart()
   updateInvestmentChart()
+  updateGrowthChart()
 }
 
 fetch('/data')

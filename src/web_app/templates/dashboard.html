@@ -20,18 +20,21 @@
     </div>
   </div>
   <div id="container">
-    <label for="communities">Select a community:</label>
+    <h4 for="communities">Select a community:</h4>
     <select id="communities" onchange="communityChanged()"></select>
     <div id="info" class="callout row">
       <div class="small-4 columns"><strong>Resident Count:</strong><br/><span id="resident-count"></span></div>
-      <div class="small-4 columns"><strong>County % Growth 2015-16:</strong><br/><span id="percent-growth"></span></div>
+      <div class="small-4 columns"><strong>County % Growth 2015-16:</strong><br/><span id="population-change"></span></div>
       <div class="small-4 columns"><strong>Total Investment:</strong><br/><span id="total-investment"></span></div>
     </div>
-    <h3>Number of FireWise Events</h3>
+    <h4><b>Number of FireWise Events</b></h4>
     <div id="event-chart" class="chart-container"></div>
 
-    <h3>Community Investment Data</h3>
+    <h4><b>Community Investment Data</b></h4>
     <div id="investment-chart" class="chart-container"></div>
+
+    <h4><b>County Population Growth Data</b></h4>
+    <div id="growth-chart" class="chart-container"></div>
   </div>
 </body>
 <script src="../static/js/script.js"></script>
