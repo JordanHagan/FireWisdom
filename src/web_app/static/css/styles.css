@@ -27,7 +27,6 @@
 /* HERE BE DRAGONS */
 .madness {
   text-align: center;
-  padding-top: 15px;
 }
 
 .madness > div > div:first-child {
@@ -47,4 +46,18 @@
 .madness > div > div:last-child > div:nth-child(2) > svg {
   position: relative;
   top: -5px;
+}
+
+#topics {
+  text-align: center;
+}
+
+#topics div {
+  display: inline-block;
+  padding: 15px;
+}
+
+body {
+  background-color: rgba(200, 228, 247, .05);
+  background-size: cover;
 }

@@ -41,6 +41,10 @@ def index():
 def lda_viz():
     return render_template('lda.html')
 
+@app.route('/leaderboard', methods = ['GET', 'POST'])
+def leaderboard():
+    return render_template('leaderboard.html')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True, threaded=True)

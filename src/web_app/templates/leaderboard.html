@@ -21,27 +21,31 @@
       </ul>
     </div>
   </div>
-  <div id="container">
-    <h4 for="communities">Select a community:
-      <div class="float-right">
-        <input type="checkbox" id="active" checked onchange="activeChanged()" /><label for="active">Active only</label>
-      </div>
-    </h4>
-    <select id="communities" onchange="communityChanged()"></select>
-    <div id="info" class="callout row">
-      <div class="small-4 columns"><strong>Resident Count:</strong><br/><span id="resident-count"></span></div>
-      <div class="small-4 columns"><strong>County % Growth 2015-16:</strong><br/><span id="population-change"></span></div>
-      <div class="small-4 columns"><strong>Total Investment:</strong><br/><span id="total-investment"></span></div>
+  <div class="row">
+
+    <div class="large-6 columns">
+      <h5 class="text-center">Top 10 Communities by Mitigation & Community Events</h4>
+      <table>
+        <thead>
+          <tr><th>Name</th><th># of Events</th></tr>
+        </thead>
+        <tbody id="events">
+        </tbody>
+      </table>
     </div>
-    <h4><b>Number of FireWise Events</b></h4>
-    <div id="event-chart" class="chart-container"></div>
 
-    <h4><b>Community Investment Data</b></h4>
-    <div id="investment-chart" class="chart-container"></div>
+    <div class="large-6 columns">
+      <h5 class="text-center">Top 10 Communities by Investment Per Capita</h4>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Investment Per Capita</th></tr>
+        </thead>
+        <tbody id="investment">
+        </tbody>
+      </table>
+    </div>
 
-    <h4><b>County Population Growth Data</b></h4>
-    <div id="growth-chart" class="chart-container"></div>
   </div>
 </body>
-<script src="../static/js/script.js"></script>
+<script src="../static/js/leaderboard.js"></script>
 </html>

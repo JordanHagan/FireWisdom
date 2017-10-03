@@ -2,11 +2,15 @@ const cats = ['Education Events', 'Distribution Events', 'Home Assessments',
   'Community Preparedness', 'Mitigation Events', 'Others']
 let community
 let data = {}
+let activeOnly = true
 
 function updateDropdown() {
   let html = ''
-  const communities = Object.keys(data)
+  let communities = Object.keys(data)
   community = communities[0]
+  if(activeOnly) {
+    communities = communities.filter(com => data[com].community_status != 'Inactive')
+  }
   communities.forEach(community => {
     html += `<option value="${community}">${community}</option>`
   })
@@ -18,7 +22,7 @@ function updateInfoBox() {
   document.querySelector('#resident-count').innerHTML = communityData.residentcount
   document.querySelector('#population-change').innerHTML =
     `${(communityData.pop_change[communityData.pop_change.length - 1] * 100).toFixed(2)}%`
-  document.querySelector('#total-investment').innerHTML = `$${communityData.lifetime_investment}`
+  document.querySelector('#total-investment').innerHTML = `$${Math.round(communityData.lifetime_investment).toLocaleString()}`
 }
 
 function updateEventChart() {
@@ -68,8 +72,10 @@ function updateInvestmentChart() {
     },
     axis: {
       y: {
+        min: 0,
+        padding: {bottom: 0},
         tick: {
-          format: x => `$${x}`
+          format: x => `$${x.toLocaleString()}`
         }
       },
       x: {
@@ -77,28 +83,24 @@ function updateInvestmentChart() {
           format: x => x + 2003
         }
       }
+    },
+    padding: {
+      right: 15
     }
   })
 }
 
-
 function updateGrowthChart() {
   const yearlyData = data[community].pop_change
   const growthData = ['Yearly Population Change'].concat(yearlyData)
-  const totalGrowth = ['Total Population Change Since 2010']
-  let total = 0
-  yearlyData.forEach(value => {
-    total = total + value
-    totalGrowth.push(total)
-  })
 
   c3.generate({
     bindto: '#growth-chart',
     data: {
-      columns: [growthData, totalGrowth]
+      columns: [growthData]
     },
     color: {
-      pattern: ['#9b3373','#1f77b4']
+      pattern: ['#9b3373']
     },
     axis: {
       y: {
@@ -111,6 +113,9 @@ function updateGrowthChart() {
           format: x => x + 2010
         }
       }
+    },
+    padding: {
+      right: 15
     }
   })
 }
@@ -119,6 +124,11 @@ function updateGrowthChart() {
 function communityChanged() {
   community = document.querySelector('#communities').value
   updateDashboard()
+}
+
+function activeChanged() {
+  activeOnly = !activeOnly
+  updateDropdown()
 }
 
 function updateDashboard() {
