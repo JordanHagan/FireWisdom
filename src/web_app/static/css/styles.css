@@ -1,5 +1,5 @@
 .top-bar {
-  margin-bottom: 1.7rem;
+  margin-bottom: .4rem;
 }
 
 .callout {
@@ -62,7 +62,7 @@
 
 #topics div {
   display: inline-block;
-  padding: 15px;
+  padding: 0 15px 8px;
 }
 
 body {
