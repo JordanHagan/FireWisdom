@@ -19,14 +19,14 @@
 5. [GitHub Folder Structure](#github-folder-structure)
 
 ## About
-Data and what they can do with it has been a rising topic within the NFPA organization. They are hoping to discover new tools, and best practices to continue on with this project long after my partnership with them is over. We are very excited about this collaboration.
+Data and what can be accomplished with it has been a rising topic within the NFPA organization. They are hoping to discover new tools and best practices to continue on with after my partnership with them is over. I am certianly excited about this collaboration.
 
-This project has two goals:
+This project has two objectives:
 1. Natural Language Processing on historical data to gain valuable insights
 2. Dashboard tool used to gain more insights into their Communities
 
 ## Natural Language Processing Tools
-One of my personal goals of this project was to gain more knowledge around different NLP tools. The world is full of free-text fields that are full of useful data just waiting for us to mine! Exploring alternative methodologies around tapping into this data sounded fun and challenging.
+One of my personal intentions of this project was to gain more knowledge around different NLP tools. The world is full of free-text fields that are full of useful data just waiting for us to mine! Exploring alternative methodologies around tapping into this data sounded fun and challenging.
 
 ### Topic modeling with an end goal!
 Firewise had about 5 main topics they would like these free-text fields mapped to.  This is a mildly different apporach to topic modeling as typically you are attempting to idenifty the underlying topics, not map to ones that have already be identified. 
