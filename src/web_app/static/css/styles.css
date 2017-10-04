@@ -1,5 +1,13 @@
+.top-bar {
+  margin-bottom: 1.7rem;
+}
+
 .callout {
   margin: 0 auto;
+}
+
+#info {
+  margin-bottom: 20px;
 }
 
 #info div {

@@ -20,12 +20,22 @@ function updateInvestment() {
   document.querySelector('#investment').innerHTML = communities
 }
 
+function updateInfoBox() {
+  [0,1,2,3,4,5].forEach(index => {
+    const total = Object.values(data)
+      .map(comm => comm.event_info[index])
+      .reduce((a, x) => x += a, 0)
+    document.querySelector(`#event${index}`).innerHTML = total
+  })
+}
+
 function getActive() {
   return Object.entries(data)
     .filter(entry => entry[1].community_status != 'Inactive')
 }
 
 function updateLeaderboard() {
+  updateInfoBox()
   updateEvents()
   updateInvestment()
 }
@@ -34,6 +44,5 @@ fetch('/data')
   .then(response => response.json())
   .then(parsed => {
     data = parsed
-    console.log(data)
     updateLeaderboard()
   })
