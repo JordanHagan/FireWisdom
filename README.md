@@ -105,6 +105,11 @@ Jordan and I worked closely together to ensure the data and analytics were accur
 ```
 ├── README.md
 ├── images
+│   ├── CommunityPreparedness.png
+│   ├── DistributionEvent.png
+│   ├── EducationEvent.png
+│   ├── Homeassessment.png
+│   ├── MitigationEvent.png
 │   └── TechStack.png
 ├── models
 │   ├── LDA_model.pkl
@@ -121,6 +126,7 @@ Jordan and I worked closely together to ensure the data and analytics were accur
 │   │   ├── NMF_or_LDA.py
 │   │   ├── RNN.py
 │   │   ├── classify_text.py (run new data through trained NMF and LDA models)
+│   │   ├── create_wordclouds.py
 │   │   ├── intake.py (bring data in from CSVs to psql)
 │   │   ├── nlp.py
 │   │   └── rnn_classify_text.py
