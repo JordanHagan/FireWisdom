@@ -28,8 +28,8 @@ This project has two goals:
 ## Natural Language Processing Tools
 One of my personal goals of this project was to gain more knowledge around different NLP tools. The world is full of free-text fields that are full of useful data just waiting for us to mine! Exploring alternative methodologies around tapping into this data sounded fun and challenging.
 
-### Topic modeling with an end goal
-Firewise had 5 main topics they had already mapped the data to:
+### Topic modeling with an end goal!
+Firewise had about 5 main topics they would like these free-text fields mapped to.  This is a mildly different apporach to topic modeling as typically you are attempting to idenifty the underlying topics, not map to ones that have already be identified. 
 #### Community Preparedness
 <img src="images/CommunityPreparedness.png" width="400">
 
@@ -100,57 +100,3 @@ Jordan and I worked closely together to ensure the data and analytics were accur
 
 ## Tech Stack
 ![Tech Stack](images/TechStack.png)
-
-## GitHub Folder Structure
-```
-├── README.md
-├── images
-│   ├── CommunityPreparedness.png
-│   ├── DistributionEvent.png
-│   ├── EducationEvent.png
-│   ├── Homeassessment.png
-│   ├── MitigationEvent.png
-│   └── TechStack.png
-├── models
-│   ├── LDA_model.pkl
-│   ├── NMF_model.pkl
-│   ├── lable_model.pkl
-│   ├── rnn_model.h5
-│   ├── tf_model.pkl
-│   └── tfidf_model.pkl
-├── src
-│   ├── jupyter_notebooks
-│   │   ├── Viz_FireWise_LDA.ipynb
-│   │   └── firewisdom_eda.ipynb
-│   ├── python
-│   │   ├── NMF_or_LDA.py
-│   │   ├── RNN.py
-│   │   ├── classify_text.py (run new data through trained NMF and LDA models)
-│   │   ├── create_wordclouds.py
-│   │   ├── intake.py (bring data in from CSVs to psql)
-│   │   ├── nlp.py
-│   │   └── rnn_classify_text.py
-│   ├── sql
-│   │   ├── gather_all_data.sql
-│   │   ├── make_aggregate_tables.sql
-│   │   └── undersample_data.sql
-│   └── web_app
-│       ├── app.py (flask interface for web app)
-│       ├── static
-│       │   ├── css
-│       │   │   └── styles.css
-│       │   ├── images
-│       │   │   └── fire_favicon.ico
-│       │   └── js
-│       │       ├── leaderboard.js
-│       │       ├── madness.js
-│       │       └── script.js
-│       └── templates
-│           ├── dashboard.html
-│           ├── lda.html
-│           └── leaderboard.html
-└── tests (Developed a few tests to make sure I was bringing in the data correctly)
-    ├── Sample\ Float\ Intake.csv
-    ├── Sample\ Int\ Intake.csv
-    ├── context.py
-    └── test_intake.py
