@@ -1,6 +1,8 @@
 # Firewisdom
 ### Data Science Immersive Cohort 49 Capstone Project
 
+[Firewise Dashboard Website](http://ec2-54-152-139-251.compute-1.amazonaws.com:8080/)
+
 ## About Firewise
 *"Brush, grass and forest fires don’t have to be disasters. NFPA’s Firewise USA program encourages local solutions for safety by involving homeowners in taking individual responsibility for preparing their homes from the risk of wildfire. Firewise is a key component of Fire Adapted Communities – a collaborative approach that connects all those who play a role in wildfire education, planning and action with comprehensive resources to help reduce risk.*
 
@@ -14,11 +16,12 @@
 2. [Natural Language Processing Tools](#natural-language-processing-tools)
 3. [Dashboard Website](#dashboard-website)
 4. [Tech Stack](#tech-stack)
+5. [GitHub Folder Structure](#github-folder-structure)
 
 ## About
 Data and what they can do with it has been a rising topic within the NFPA organization. They are hoping to discover new tools, and best practices to continue on with this project long after my partnership with them is over. We are very excited about this collaboration.
 
-There are 2 goals to this project:
+This project has two goals:
 1. Natural Language Processing on historical data to gain valuable insights
 2. Dashboard tool used to gain more insights into their Communities
 
@@ -39,13 +42,16 @@ Right now, the RNN is operating at about 75% accuracy.  My theory as to why it i
 
 
 ### Latent Dirichlet Allocation ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/NMF_or_LDA.py))
+
+[LDA Visualization](http://ec2-54-152-139-251.compute-1.amazonaws.com:8080/lda_viz)
+
 *"In natural language processing, latent Dirichlet allocation (LDA) is a generative statistical model that allows sets of observations to be explained by unobserved groups that explain why some parts of the data are similar."*
 <sub><b>[Source](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)</b></sub>
 
 *"LDA finds topics as a group of words that have high co-occurrences among different documents. On the other side, documents from the similar mixture of topics should also be similar, such that they can be described by these topics in a "compact" way. So ideally the similarity in the latent topic space would imply the the similarity in both the observed word space as well as the document space - this is where the word "latent" in the name come from."*
 <sub><b>[Source](http://nbviewer.jupyter.org/github/dolaameng/tutorials/blob/master/topic-finding-for-short-texts/topics_for_short_texts.ipynb)</b></sub>
 
-**LDA is the NLP tool I chose to use for the final results of this project.**  In cases where the topic probabilities should remain fixed per document or in small data settings in which the additional variability too much NMF performs better. Because of LDA's handling of the probabilistic priors and ability of LDA to find and connects documents through the latent topic space it does a better job assigning clearer, easily identifiable topics (and secondary topics) with larger texts.
+**LDA is the NLP tool I chose to use for the final results of this project.**  In cases where the topic probabilities should remain fixed per document or in small data settings in which the additional variability is too much, NMF performs better. Because of LDA's handling of the probabilistic priors and the ability of LDA to find and connect documents through the latent topic space it does a better job assigning clearer, easily identifiable topics (and secondary topics) with larger texts.
 
 ### NMF vs LDA
 #### Comparison between the top 10 words for each topic when identified using LDA vs. NMF
@@ -67,14 +73,61 @@ smokeys 65th birthday | Other | Other | n/a
 *Both NMF and LDA struggled with small texts without obvious key words in it.  These were grouped into an "other" category*
 
 ## Dashboard Website
-Now that we had all this information on events Firewise Communities have had, we can now gain more insights into the communities!
+We can gain more insight into the Firewise Communities now that we have all this information!
 
 **User Interface was designed with help from [Jordan Fallon.](https://github.com/thefetts)**
 *I got to write and learn some JavaScript, HTML, and CSS though!*
 
 Jordan and I worked closely together to ensure the data and analytics were accurately represented.  My goal was to create a tool that Firewise is able to use to display current community metrics, the LDA topic modeling, and census data on county population growth.
 
-Website Link
-
 ## Tech Stack
 ![Tech Stack](images/TechStack.png)
+
+## GitHub Folder Structure
+```
+├── README.md
+├── images
+│   └── TechStack.png
+├── models
+│   ├── LDA_model.pkl
+│   ├── NMF_model.pkl
+│   ├── lable_model.pkl
+│   ├── rnn_model.h5
+│   ├── tf_model.pkl
+│   └── tfidf_model.pkl
+├── src
+│   ├── jupyter_notebooks
+│   │   ├── Viz_FireWise_LDA.ipynb
+│   │   └── firewisdom_eda.ipynb
+│   ├── python
+│   │   ├── NMF_or_LDA.py
+│   │   ├── RNN.py
+│   │   ├── classify_text.py (run new data through trained NMF and LDA models)
+│   │   ├── intake.py (bring data in from CSVs to psql)
+│   │   ├── nlp.py
+│   │   └── rnn_classify_text.py
+│   ├── sql
+│   │   ├── gather_all_data.sql
+│   │   ├── make_aggregate_tables.sql
+│   │   └── undersample_data.sql
+│   └── web_app
+│       ├── app.py (flask interface for web app)
+│       ├── static
+│       │   ├── css
+│       │   │   └── styles.css
+│       │   ├── images
+│       │   │   └── fire_favicon.ico
+│       │   └── js
+│       │       ├── leaderboard.js
+│       │       ├── madness.js
+│       │       └── script.js
+│       └── templates
+│           ├── dashboard.html
+│           ├── lda.html
+│           └── leaderboard.html
+└── tests (Developed a few tests to make sure I was bringing in the data correctly)
+    ├── Sample\ Float\ Intake.csv
+    ├── Sample\ Int\ Intake.csv
+    ├── context.py
+    └── test_intake.py
+    ```
