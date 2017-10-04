@@ -31,15 +31,15 @@ One of my personal goals of this project was to gain more knowledge around diffe
 ### Topic modeling with an end goal
 Firewise had 5 main topics they had already mapped the data to:
 #### Community Preparedness
-![comm](images/Community Preparedness.png)
+![comm](images/CommunityPreparedness.png)
 #### Distribution Event
-![comm](images/Distribution Event.png)
+![comm](images/DistributionEvent.png)
 #### Education Event
-![comm](images/Education Event.png)
+![comm](images/EducationEvent.png)
 #### Home assessment
-![comm](images/Home assessment.png)
+![comm](images/Homeassessment.png)
 #### Mitigation Event
-![comm](images/Mitigation Event.png)
+![comm](images/MitigationEvent.png)
 
 ### Recurrent Neural Network ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/RNN.py))
 Firewise had already mapped around 2,000 free text fields to the categories they identified.  My theory is that we could do all the normal NLP pre-model text processing, map that resulting text to numbers, put those numbers into a matrix, and run that matrix through a Recurrent Neural Network to hopefully have it learn by the words in the matrix, which category it maps to.
