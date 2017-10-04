@@ -28,6 +28,19 @@ This project has two goals:
 ## Natural Language Processing Tools
 One of my personal goals of this project was to gain more knowledge around different NLP tools. The world is full of free-text fields that are full of useful data just waiting for us to mine! Exploring alternative methodologies around tapping into this data sounded fun and challenging.
 
+### Topic modeling with an end goal
+Firewise had 5 main topics they had already mapped the data to:
+#### Community Preparedness
+![comm](images/Community Preparedness.png)
+#### Distribution Event
+![comm](images/Distribution Event.png)
+#### Education Event
+![comm](images/Education Event.png)
+#### Home assessment
+![comm](images/Home assessment.png)
+#### Mitigation Event
+![comm](images/Mitigation Event.png)
+
 ### Recurrent Neural Network ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/RNN.py))
 Firewise had already mapped around 2,000 free text fields to the categories they identified.  My theory is that we could do all the normal NLP pre-model text processing, map that resulting text to numbers, put those numbers into a matrix, and run that matrix through a Recurrent Neural Network to hopefully have it learn by the words in the matrix, which category it maps to.
 
