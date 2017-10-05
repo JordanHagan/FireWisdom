@@ -16,7 +16,6 @@
 2. [Natural Language Processing Tools](#natural-language-processing-tools)
 3. [Dashboard Website](#dashboard-website)
 4. [Tech Stack](#tech-stack)
-5. [GitHub Folder Structure](#github-folder-structure)
 
 ## About
 Data and what can be accomplished with it has been a rising topic within the NFPA organization. They are hoping to discover new tools and best practices to continue on with after my partnership with them is over. I am certianly excited about this collaboration.
