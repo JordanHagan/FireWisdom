@@ -44,7 +44,6 @@ Firewise had about 5 main topics they would like these free-text fields mapped t
 #### Mitigation Event
 <img src="images/MitigationEvent.png" width="400">
 
-
 ### Recurrent Neural Network ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/RNN.py))
 Firewise had already mapped around 2,000 free text fields to the categories they identified.  My theory is that we could do all the normal NLP pre-model text processing, map that resulting text to numbers, put those numbers into a matrix, and run that matrix through a Recurrent Neural Network to hopefully have it learn by the words in the matrix, which category it maps to.
 
@@ -69,6 +68,9 @@ Right now, the RNN is operating at about 75% accuracy.  My theory as to why it i
 <sub><b>[Source](http://nbviewer.jupyter.org/github/dolaameng/tutorials/blob/master/topic-finding-for-short-texts/topics_for_short_texts.ipynb)</b></sub>
 
 **LDA is the NLP tool I chose to use for the final results of this project.**  In cases where the topic probabilities should remain fixed per document or in small data settings in which the additional variability is too much, NMF performs better. Because of LDA's handling of the probabilistic priors and the ability of LDA to find and connect documents through the latent topic space it does a better job assigning clearer, easily identifiable topics (and secondary topics) with larger texts.
+
+### A supervised approach using a supervised algorithm
+One of the coolest aspects of this project was that the topics I was mapping to for my NLP were already identified.  I knew the 5 topics we were aiming for.  Knowing that, I took an even sampling of all of the topics that their analyst had mapped and used those to train my LDA model.  That way, when I ran the rest of the corpus through the data, I knew it was going to map to one of those 5 topics.
 
 ### NMF vs LDA
 #### Comparison between the top 10 words for each topic when identified using LDA vs. NMF
