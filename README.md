@@ -18,17 +18,18 @@
 4. [Tech Stack](#tech-stack)
 
 ## About
-Data and what can be accomplished with it has been a rising topic within the NFPA organization. They are hoping to discover new tools and best practices to continue on with after my partnership with them is over. I am certianly excited about this collaboration.
+Data and what can be accomplished with it has been a rising topic within the NFPA organization. NFPA is hoping to discover new tools and best practices to continue on with after my partnership with them is over. I am also certianly excited about this collaboration.
 
 This project has two objectives:
 1. Natural Language Processing on historical data to gain valuable insights
-2. Dashboard tool used to gain more insights into their Communities
+2. Dashboard tool used to visualize those insights into their Communities
 
 ## Natural Language Processing Tools
-One of my personal intentions of this project was to gain more knowledge around different NLP tools. The world is full of free-text fields that are full of useful data just waiting for us to mine! Exploring alternative methodologies around tapping into this data sounded fun and challenging.
+One of my personal intentions of this project was to gain more knowledge around different NLP tools. The world is full of free-text fields contain highly useful information just waiting for us to mine! Exploring alternative methodologies around tapping into this data sounded fun and challenging.
 
 ### Topic modeling with an end goal!
 Firewise had about 5 main topics they would like these free-text fields mapped to.  This is a mildly different apporach to topic modeling as typically you are attempting to idenifty the underlying topics, not map to ones that have already be identified. 
+
 #### Community Preparedness
 <img src="images/CommunityPreparedness.png" width="400">
 
@@ -49,6 +50,9 @@ Firewise had already mapped around 2,000 free text fields to the categories they
 
 Right now, the RNN is operating at about 75% accuracy.  My theory as to why it is unable to identify which category the text belongs in is because free text fields can have more than 1 category within it. This situation is better handled by NMF or LDA.
 
+## A supervised approach using an unsupervised algorithm
+One of the coolest aspects of this project was that the topics I was mapping to for my NLP were already identified.  I knew the 5 topics we were aiming for.  Knowing that, I took an even sampling of all of the topics that their analyst had mapped and used those to train my LDA and NMF models.  That way, when I ran the rest of the corpus through the data, I knew it was going to map to one of those 5 topics.
+
 ### Non-negative Matrix Factorization ([code](https://github.com/JordanHagan/FireWisdom/blob/master/src/python/NMF_or_LDA.py))
 *"Non-negative matrix factorization (NMF) is used for feature extraction and is generally seen to be useful when there are many attributes, particularly when the attributes are ambiguous or are not strong predictors. By combining attributes NMF can display patterns, topics, or themes which have importance."*
 <sub><b>[Source](https://datascience.stackexchange.com/questions/10299/what-is-a-good-explanation-of-non-negative-matrix-factorization/15438)</b></sub>
@@ -68,9 +72,6 @@ Right now, the RNN is operating at about 75% accuracy.  My theory as to why it i
 <sub><b>[Source](http://nbviewer.jupyter.org/github/dolaameng/tutorials/blob/master/topic-finding-for-short-texts/topics_for_short_texts.ipynb)</b></sub>
 
 **LDA is the NLP tool I chose to use for the final results of this project.**  In cases where the topic probabilities should remain fixed per document or in small data settings in which the additional variability is too much, NMF performs better. Because of LDA's handling of the probabilistic priors and the ability of LDA to find and connect documents through the latent topic space it does a better job assigning clearer, easily identifiable topics (and secondary topics) with larger texts.
-
-### A supervised approach using a supervised algorithm
-One of the coolest aspects of this project was that the topics I was mapping to for my NLP were already identified.  I knew the 5 topics we were aiming for.  Knowing that, I took an even sampling of all of the topics that their analyst had mapped and used those to train my LDA model.  That way, when I ran the rest of the corpus through the data, I knew it was going to map to one of those 5 topics.
 
 ### NMF vs LDA
 #### Comparison between the top 10 words for each topic when identified using LDA vs. NMF
