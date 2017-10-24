@@ -122,7 +122,6 @@ Jordan and I worked closely together to ensure the data and analytics were accur
 │   ├── tf_model.pkl
 │   └── tfidf_model.pkl
 ├── src
-│   ├── __init__.py
 │   ├── jupyter_notebooks
 │   │   ├── Viz_FireWise_LDA.ipynb
 │   │   └── firewisdom_eda.ipynb
@@ -158,4 +157,3 @@ Jordan and I worked closely together to ensure the data and analytics were accur
     ├── Sample\ Int\ Intake.csv
     ├── context.py
     └── test_intake.py
-    ```
