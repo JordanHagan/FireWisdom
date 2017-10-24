@@ -16,6 +16,7 @@
 2. [Natural Language Processing Tools](#natural-language-processing-tools)
 3. [Dashboard Website](#dashboard-website)
 4. [Tech Stack](#tech-stack)
+5. [GitHub Folder Structure](#github-folder-structure)
 
 ## About
 Data and what can be accomplished with it has been a rising topic within the NFPA organization. NFPA is hoping to discover new tools and best practices to continue on with after my partnership with them is over. I am also certianly excited about this collaboration.
@@ -95,10 +96,66 @@ smokeys 65th birthday | Other | Other | n/a
 ## Dashboard Website
 We can gain more insight into the Firewise Communities now that we have all this information!
 
-**User Interface was designed with help from [Jordan Fallon.](https://github.com/thefetts)**
+**User Interface was built with help from [Jordan Fallon.](https://github.com/thefetts)**
 *I got to write and learn some JavaScript, HTML, and CSS though!*
 
 Jordan and I worked closely together to ensure the data and analytics were accurately represented.  My goal was to create a tool that Firewise is able to use to display current community metrics, the LDA topic modeling, and census data on county population growth.
 
 ## Tech Stack
 ![Tech Stack](images/TechStack.png)
+
+## GitHub Folder Structure
+```
+├── README.md
+├── images
+│   ├── CommunityPreparedness.png
+│   ├── DistributionEvent.png
+│   ├── EducationEvent.png
+│   ├── Homeassessment.png
+│   ├── MitigationEvent.png
+│   └── TechStack.png
+├── models
+│   ├── LDA_model.pkl
+│   ├── NMF_model.pkl
+│   ├── lable_model.pkl
+│   ├── rnn_model.h5
+│   ├── tf_model.pkl
+│   └── tfidf_model.pkl
+├── src
+│   ├── __init__.py
+│   ├── jupyter_notebooks
+│   │   ├── Viz_FireWise_LDA.ipynb
+│   │   └── firewisdom_eda.ipynb
+│   ├── python
+│   │   ├── NMF_or_LDA.py
+│   │   ├── RNN.py
+│   │   ├── classify_text.py
+│   │   ├── create_wordclouds.py
+│   │   ├── intake.py
+│   │   ├── nlp.py
+│   │   └── rnn_classify_text.py
+│   ├── sql
+│   │   ├── gather_all_data.sql
+│   │   ├── make_aggregate_tables.sql
+│   │   └── undersample_data.sql
+│   └── web_app
+│       ├── app.py
+│       ├── static
+│       │   ├── css
+│       │   │   └── styles.css
+│       │   ├── images
+│       │   │   └── fire_favicon.ico
+│       │   └── js
+│       │       ├── leaderboard.js
+│       │       ├── madness.js
+│       │       └── script.js
+│       └── templates
+│           ├── dashboard.html
+│           ├── lda.html
+│           └── leaderboard.html
+└── tests
+    ├── Sample\ Float\ Intake.csv
+    ├── Sample\ Int\ Intake.csv
+    ├── context.py
+    └── test_intake.py
+    ```
