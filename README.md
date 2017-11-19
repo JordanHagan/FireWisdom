@@ -94,6 +94,8 @@ smokeys 65th birthday | Other | Other | n/a
 *Both NMF and LDA struggled with small texts without obvious key words in it.  These were grouped into an "other" category*
 
 ## Dashboard Website
+[Firewisdom Dashboard Website](http://ec2-54-152-139-251.compute-1.amazonaws.com:8080/)
+
 We can gain more insight into the Firewise Communities now that we have all this information!
 
 **User Interface was built with help from [Jordan Fallon.](https://github.com/thefetts)**
