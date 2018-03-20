@@ -1,8 +1,6 @@
 # Firewisdom
 ### Data Science Immersive Cohort 49 Capstone Project
 
-[Firewisdom Dashboard Website](http://ec2-54-152-139-251.compute-1.amazonaws.com:8080/)
-
 ## About Firewise
 *"Brush, grass and forest fires don’t have to be disasters. NFPA’s Firewise USA program encourages local solutions for safety by involving homeowners in taking individual responsibility for preparing their homes from the risk of wildfire. Firewise is a key component of Fire Adapted Communities – a collaborative approach that connects all those who play a role in wildfire education, planning and action with comprehensive resources to help reduce risk.*
 
@@ -94,7 +92,6 @@ smokeys 65th birthday | Other | Other | n/a
 *Both NMF and LDA struggled with small texts without obvious key words in it.  These were grouped into an "other" category*
 
 ## Dashboard Website
-[Firewisdom Dashboard Website](http://ec2-54-152-139-251.compute-1.amazonaws.com:8080/)
 
 We can gain more insight into the Firewise Communities now that we have all this information!
 
