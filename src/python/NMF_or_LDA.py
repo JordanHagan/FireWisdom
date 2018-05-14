@@ -51,7 +51,7 @@ class NMF_LDA_class:
 
     def tf(self):
         print("Extracting tf features for LDA...")
-        tf_vectorizer = CountVectorizer(max_df=.95, min_df=0.05, max_features=59)
+        tf_vectorizer = CountVectorizer(max_df=.99, min_df=0.01, max_features=150)
         tf_model = tf_vectorizer.fit(self.contents)
         with open('/Users/jordanhelen/galvanize/capstone/FireWisdom/models/tf_model.pkl','wb') as f:
             pickle.dump(tf_model,f)
@@ -68,7 +68,7 @@ class NMF_LDA_class:
 
     def run_lda(self):
         print("Running and pickling LDA model...")
-        self.model = LatentDirichletAllocation(n_components=5, max_iter=100,learning_method='online',learning_offset=50.,random_state=0)
+        self.model = LatentDirichletAllocation(n_components=7, max_iter=100,learning_method='online',learning_offset=50.,random_state=0)
         self.model.fit(self.X)
         with open('/Users/jordanhelen/galvanize/capstone/FireWisdom/models/LDA_model.pkl','wb') as f:
             pickle.dump(self.model,f)
