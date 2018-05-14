@@ -9,7 +9,7 @@ import numpy as np
 app = Flask(__name__)
 
 #Bring Data In
-risk_df = pd.read_csv('../../../front_end_final.csv')
+risk_df = pd.read_csv('Firewise_final_data.csv')
 
 #Clean up and combine all data for dictionary
 risk_df = risk_df.fillna(0)
