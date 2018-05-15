@@ -1,0 +1,7 @@
+---
+applications:
+- name: firewisdom
+  memory: 1G
+  instances: 1
+  buildpack: python_buildpack
+  command: python app.py
